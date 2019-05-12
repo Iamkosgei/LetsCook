@@ -1,5 +1,6 @@
 package com.kosgei.letscook;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,23 +14,55 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.kosgei.letscook.adapters.CategoryListAdapter;
+import com.kosgei.letscook.models.Category;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+   @BindView(R.id.categories_recyclerView)
+    RecyclerView categoryRecyclerView;
+
+    private CategoryListAdapter mAdapter;
+
+    //Dummy Category Data
+    ArrayList<Category> categories = new ArrayList<Category>(Arrays.asList(
+            new Category("Beef"),
+            new Category("Pork"),
+            new Category("Chicken"),
+            new Category("Mutton"),
+            new Category("Fish")));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        ButterKnife.bind(this);
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //get the intent
+        Intent intent = getIntent();
+        String email = intent.getStringExtra("email");
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -39,6 +72,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        //Update header email address with the email from the intent
+        View headerView =navigationView.getHeaderView(0);
+        TextView emailTextView =  headerView.findViewById(R.id.textView_email);
+        emailTextView.setText(email);
+
+        //setting the layout manager and populating the recyclerview
+        mAdapter = new CategoryListAdapter(categories,getApplicationContext());
+        categoryRecyclerView.setAdapter(mAdapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(HomeActivity.this);
+        categoryRecyclerView.setLayoutManager(layoutManager);
+        categoryRecyclerView.setHasFixedSize(true);
 
 
     }
