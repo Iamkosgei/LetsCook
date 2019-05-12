@@ -17,7 +17,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.email) EditText email;
     @BindView(R.id.password) EditText password;
     @BindView(R.id.confirm_password) EditText confirm_password;
-    @BindView(R.id.signup) Button signUp;
+    @BindView(R.id.login) Button signUp;
 
 
     @Override
@@ -73,7 +73,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         {
             if(isValid())
             {
-                Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, names.getText() + " welcome", Toast.LENGTH_SHORT).show();
             }
 
         }
