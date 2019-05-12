@@ -8,4 +8,11 @@
     tools:context=".HomeActivity"
     tools:showIn="@layout/app_bar_home">
 
+ <androidx.recyclerview.widget.RecyclerView
+     android:id="@+id/categories_recyclerView"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+
+ </androidx.recyclerview.widget.RecyclerView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
