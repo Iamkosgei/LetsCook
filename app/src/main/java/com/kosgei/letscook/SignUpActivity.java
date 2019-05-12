@@ -17,7 +17,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.email) EditText email;
     @BindView(R.id.password) EditText password;
     @BindView(R.id.confirm_password) EditText confirm_password;
-    @BindView(R.id.login) Button signUp;
+    @BindView(R.id.sign_up) Button signUp;
 
 
     @Override
