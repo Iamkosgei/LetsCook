@@ -13,13 +13,13 @@ Lets cook is an android recipe app where a user can sign Up or login then view v
 edamam.com
 
 ## Screen Shots
-![1](https://user-images.githubusercontent.com/14147462/57702196-38036880-7666-11e9-8f75-a2b1d53a41ab.png)
+![1](https://user-images.githubusercontent.com/14147462/57702196-38036880-7666-11e9-8f75-a2b1d53a41ab.png  =250x)
 
-![2](https://user-images.githubusercontent.com/14147462/57702281-6c772480-7666-11e9-80d9-e32f8328c571.png)
+![2](https://user-images.githubusercontent.com/14147462/57702281-6c772480-7666-11e9-80d9-e32f8328c571.png  =250x)
 
-![3](https://user-images.githubusercontent.com/14147462/57702339-86b10280-7666-11e9-91c6-19e2ab5c43f4.png)
+![3](https://user-images.githubusercontent.com/14147462/57702339-86b10280-7666-11e9-91c6-19e2ab5c43f4.png  =250x)
 
-![4](https://user-images.githubusercontent.com/14147462/57702432-bcee8200-7666-11e9-87f2-13c45d60c879.png)
+![4](https://user-images.githubusercontent.com/14147462/57702432-bcee8200-7666-11e9-87f2-13c45d60c879.png  =250x)
 
 
 
