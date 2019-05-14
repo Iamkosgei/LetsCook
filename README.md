@@ -11,4 +11,4 @@ Lets cook is an android recipe app where a user can sign Up or login then view v
 
 
 ## License
-The Salon was released under [MIT](LICENSE)
+Lets code was released under [MIT](LICENSE)
