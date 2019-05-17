@@ -17,6 +17,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="585dp"
         android:orientation="vertical"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +37,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:id="@+id/name"
+                android:text="John Doe"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
 
@@ -56,6 +58,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:id="@+id/email"
+                android:text="johndoe@gmail.com"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress" />
 
@@ -77,6 +80,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:id="@+id/password"
+                android:text="123456"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />
 
@@ -98,10 +102,17 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="123456"
                 android:id="@+id/confirm_password"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:indicatorName="BallTrianglePathIndicator"
+            />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/sign_up"
