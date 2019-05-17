@@ -1,6 +1,7 @@
 package com.kosgei.letscook;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -8,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -15,6 +17,11 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kosgei.letscook.adapters.CategoryListAdapter;
 import com.kosgei.letscook.models.Category;
 
@@ -43,14 +50,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private CategoryListAdapter mAdapter;
 
+    private DatabaseReference mDatabase;
+
+
     //Dummy Category Data
-    ArrayList<Category> categories = new ArrayList<Category>(Arrays.asList(
-            new Category("Beef"),
-            new Category("Pork"),
-            new Category("Chicken"),
-            new Category("Mutton"),
-            new Category("Fish"),
-            new Category("Turkey")));
+//    ArrayList<Category> categories = new ArrayList<Category>(Arrays.asList(
+//            new Category("Beef"),
+//            new Category("Pork"),
+//            new Category("Chicken"),
+//            new Category("Mutton"),
+//            new Category("Fish"),
+//            new Category("Turkey")));
+
+    ArrayList<Category> categories = new ArrayList<Category>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,14 +96,39 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         emailTextView.setText(email);
 
 
-        //setting the layout manager and populating the recyclerview
-        mAdapter = new CategoryListAdapter(categories,getApplicationContext());
-        categoryRecyclerView.setAdapter(mAdapter);
 
-        //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(HomeActivity.this);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
-        categoryRecyclerView.setLayoutManager(layoutManager);
-        categoryRecyclerView.setHasFixedSize(true);
+
+
+        //Tryring to implement firebase without ui
+        mDatabase = FirebaseDatabase.getInstance().getReference("categories");
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Category category = postSnapshot.getValue(Category.class);
+                    categories.add(new Category(category.getName(),category.getUrl()));
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    categories.forEach(P -> System.out.println(P.getName()));
+                }
+                //setting the layout manager and populating the recyclerview
+                mAdapter = new CategoryListAdapter(categories,getApplicationContext());
+                categoryRecyclerView.setAdapter(mAdapter);
+
+                //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(HomeActivity.this);
+                RecyclerView.LayoutManager layoutManager = new GridLayoutManager(HomeActivity.this,2);
+                categoryRecyclerView.setLayoutManager(layoutManager);
+                categoryRecyclerView.setHasFixedSize(true);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+
+        });
+
+
 
 
     }
