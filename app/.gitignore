@@ -195,6 +195,8 @@ fabric.properties
 # firebase
 google-services.json
 
+/gradle.properties
+
 ### AndroidStudio Patch ###
 
 !/gradle/wrapper/gradle-wrapper.jar

@@ -1,6 +1,7 @@
 package com.kosgei.letscook.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kosgei.letscook.R;
 import com.kosgei.letscook.models.Category;
+import com.kosgei.letscook.ui.RecipeListActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -74,7 +76,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         @Override
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
-            Toast.makeText(context, categories.get(itemPosition).getName(), Toast.LENGTH_SHORT).show();
+            context.startActivity(new Intent(context, RecipeListActivity.class));
         }
     }
 }

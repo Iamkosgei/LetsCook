@@ -1,4 +1,4 @@
-package com.kosgei.letscook;
+package com.kosgei.letscook.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.kosgei.letscook.R;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import butterknife.BindView;
@@ -112,7 +113,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                     mDatabase.child("Users").child(user.getUid()).child("name").setValue(names.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            Intent intent = new Intent(SignUpActivity.this,HomeActivity.class);
+                                            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
 
                                             //avoids using the back btn to go back to the signup activity after successful login
                                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

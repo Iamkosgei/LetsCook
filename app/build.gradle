@@ -21,6 +21,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildTypes.each {
+        it.buildConfigField 'String', 'EDAMAM_APP_KEY', edamam_app_key
+        it.buildConfigField 'String', 'EDAMAM_APP_ID', edamam_app_id
+    }
 }
 
 dependencies {
@@ -48,6 +52,7 @@ dependencies {
 
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    implementation("com.squareup.okhttp3:okhttp:3.14.1")
 
 
 
