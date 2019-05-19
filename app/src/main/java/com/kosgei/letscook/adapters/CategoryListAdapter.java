@@ -68,15 +68,17 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
         public void bindCategory(Category category)
         {
-         categoryTV.setText(category.getName());
-         Picasso.get().load(category.getUrl()).into(categoryImageView);
+            categoryTV.setText(category.getName());
+            Picasso.get().load(category.getUrl()).into(categoryImageView);
 
         }
 
         @Override
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
-            context.startActivity(new Intent(context, RecipeListActivity.class));
+            Intent intent = new Intent(context, RecipeListActivity.class);
+            intent.putExtra("category",categories.get(itemPosition).getName());
+            context.startActivity(intent);
         }
     }
 }
