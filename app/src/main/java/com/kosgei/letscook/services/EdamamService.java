@@ -27,6 +27,8 @@ public class EdamamService {
         urlBuilder.addQueryParameter("app_id",Constants.EDAMAM_APP_ID);
         urlBuilder.addQueryParameter("app_key" ,Constants.EDAMAM_APP_KEY);
         urlBuilder.addQueryParameter(Constants.EDAMAM_CATEGORY_QUERY_PARAMETER,category);
+        urlBuilder.addQueryParameter(Constants.EDAMAM_FROM_QUERY_PARAMETER,"0");
+        urlBuilder.addQueryParameter(Constants.EDAMAM_TO_QUERY_PARAMETER,"100");
 
         String url = urlBuilder.build().toString();
 
