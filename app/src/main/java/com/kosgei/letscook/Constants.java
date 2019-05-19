@@ -6,4 +6,7 @@ public class Constants {
     public static final String EDAMAM_BASE_URL = "https://api.edamam.com/search";
     public static final String EDAMAM_CATEGORY_QUERY_PARAMETER = "q";
 
+    public static final String EDAMAM_FROM_QUERY_PARAMETER = "from";
+    public static final String EDAMAM_TO_QUERY_PARAMETER = "to";
+
 }
