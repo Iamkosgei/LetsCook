@@ -14,19 +14,17 @@ edamam.com
 
 ## Screen Shots
 
-<img src="https://user-images.githubusercontent.com/14147462/57702196-38036880-7666-11e9-8f75-a2b1d53a41ab.png" width="20%" />
+<img src="https://user-images.githubusercontent.com/14147462/57702196-38036880-7666-11e9-8f75-a2b1d53a41ab.png" width="20%" />  <img src="https://user-images.githubusercontent.com/14147462/57702281-6c772480-7666-11e9-80d9-e32f8328c571.png" width="20%" /> <img src="https://user-images.githubusercontent.com/14147462/57702339-86b10280-7666-11e9-91c6-19e2ab5c43f4.png" width="20%" />
 
-<img src="https://user-images.githubusercontent.com/14147462/57702281-6c772480-7666-11e9-80d9-e32f8328c571.png" width="20%" />
 
-<img src="https://user-images.githubusercontent.com/14147462/57702339-86b10280-7666-11e9-91c6-19e2ab5c43f4.png" width="20%" />
 
-<img src="https://user-images.githubusercontent.com/14147462/57702432-bcee8200-7666-11e9-87f2-13c45d60c879.png" width="20%" />
 
-<img src="https://user-images.githubusercontent.com/14147462/58022148-7a6cef80-7b15-11e9-8df6-5814617e42c4.png" width="20%" />
 
-<img src="https://user-images.githubusercontent.com/14147462/58022148-7a6cef80-7b15-11e9-8df6-5814617e42c4.png" width="20%" />
 
-<img src="https://user-images.githubusercontent.com/14147462/58022240-b738e680-7b15-11e9-98bf-240bf9c72990.png" width="20%" />
+
+ <img src="https://user-images.githubusercontent.com/14147462/57702432-bcee8200-7666-11e9-87f2-13c45d60c879.png" width="20%" /> <img src="https://user-images.githubusercontent.com/14147462/58022148-7a6cef80-7b15-11e9-8df6-5814617e42c4.png" width="20%" />  <img src="https://user-images.githubusercontent.com/14147462/58022240-b738e680-7b15-11e9-98bf-240bf9c72990.png" width="20%" />
+
+
 
 
 
