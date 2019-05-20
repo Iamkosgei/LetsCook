@@ -1,7 +1,11 @@
 package com.kosgei.letscook.models;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 
+
+@Parcel
 public class Recipe {
     private String name;
     private String image;
