@@ -66,7 +66,7 @@ public class RecipeListActivity extends AppCompatActivity {
                     public void run() {
                         recipeListAdapter = new RecipeListAdapter(getApplicationContext(),recipes);
                         recyclerView.setAdapter(recipeListAdapter);
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),2);
                         recyclerView.setLayoutManager(layoutManager);
                         recyclerView.setHasFixedSize(true);
 
