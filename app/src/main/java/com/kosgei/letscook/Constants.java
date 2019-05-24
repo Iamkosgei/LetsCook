@@ -8,5 +8,7 @@ public class Constants {
 
     public static final String EDAMAM_FROM_QUERY_PARAMETER = "from";
     public static final String EDAMAM_TO_QUERY_PARAMETER = "to";
+    public static final String FIREBASE_CHILD_RECIPES = "recipes";
+
 
 }
