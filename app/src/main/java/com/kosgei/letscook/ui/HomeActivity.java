@@ -12,8 +12,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import android.view.MenuItem;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,15 +49,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private DatabaseReference mDatabase;
 
+    @BindView(R.id.shimmer_view_container)
+    ShimmerFrameLayout mShimmerViewContainer;
 
-    //Dummy Category Data
-//    ArrayList<Category> categories = new ArrayList<Category>(Arrays.asList(
-//            new Category("Beef"),
-//            new Category("Pork"),
-//            new Category("Chicken"),
-//            new Category("Mutton"),
-//            new Category("Fish"),
-//            new Category("Turkey")));
+    FirebaseUser user;
 
     ArrayList<Category> categories = new ArrayList<Category>();
 
@@ -67,13 +64,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         ButterKnife.bind(this);
 
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        //get the intent
-        Intent intent = getIntent();
-        String email = intent.getStringExtra("email");
+//
+//        //get the intent
+//        Intent intent = getIntent();
+//        String email = intent.getStringExtra("email");
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -88,11 +87,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         //Update header email address with the email from previous activity
         View headerView =navigationView.getHeaderView(0);
         TextView emailTextView =  headerView.findViewById(R.id.textView_email);
-        emailTextView.setText(email);
+        emailTextView.setText(user.getEmail());
 
-
-
-
+        TextView name = headerView.findViewById(R.id.name);
+        name.setText(user.getDisplayName());
 
         //Tryring to implement firebase without ui
         mDatabase = FirebaseDatabase.getInstance().getReference("categories");
@@ -103,9 +101,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     Category category = postSnapshot.getValue(Category.class);
                     categories.add(new Category(category.getName(),category.getUrl()));
                 }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    categories.forEach(P -> System.out.println(P.getName()));
-                }
                 //setting the layout manager and populating the recyclerview
                 mAdapter = new CategoryListAdapter(categories,getApplicationContext());
                 categoryRecyclerView.setAdapter(mAdapter);
@@ -114,6 +109,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 RecyclerView.LayoutManager layoutManager = new GridLayoutManager(HomeActivity.this,2);
                 categoryRecyclerView.setLayoutManager(layoutManager);
                 categoryRecyclerView.setHasFixedSize(true);
+
+                mShimmerViewContainer.stopShimmer();
+                mShimmerViewContainer.setVisibility(View.GONE);
             }
 
             @Override
@@ -174,6 +172,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(this, "Bye", Toast.LENGTH_SHORT).show();
             finish();
+        }
+        else if(id == R.id.nav_favourite)
+        {
+            startActivity(new Intent(HomeActivity.this,SavedRecipeListActivity.class));
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
