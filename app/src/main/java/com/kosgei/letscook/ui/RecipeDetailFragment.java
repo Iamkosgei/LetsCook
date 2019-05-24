@@ -13,7 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.kosgei.letscook.Constants;
 import com.kosgei.letscook.R;
 import com.kosgei.letscook.models.Recipe;
 import com.squareup.picasso.Picasso;
@@ -47,6 +53,8 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
     TextView weight;
     @BindView(R.id.open_in_browser)
     Button openButton;
+    @BindView(R.id.saveButton)
+    Button saveButton;
 
     private Recipe recipe;
 
@@ -69,6 +77,7 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
         ButterKnife.bind(this, view);
 
         openButton.setOnClickListener(this);
+        saveButton.setOnClickListener(this);
 
         Picasso.get().load(recipe.getImage()).into(image);
         name.setText(recipe.getName());
@@ -76,9 +85,10 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
         healthLabels.setText(android.text.TextUtils.join("\n ",recipe.getHealthLabels()));
         dietLabels.setText(android.text.TextUtils.join("\n ",recipe.getDietLabels()));
         cautions.setText(android.text.TextUtils.join("\n ",recipe.getCautions()));
-        source.setText(recipe.getSource());
-        time.setText(recipe.getTotalTime());
-        weight.setText(recipe.getTotalWeight());
+        source.setText(String.format("Source: %s", recipe.getSource()));
+        time.setText(String.format("Time:  %s", recipe.getTotalTime()));
+        weight.setText(String.format("Weight: %s", recipe.getTotalWeight()));
+
         return view;
     }
 
@@ -89,6 +99,20 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
         {
             Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(recipe.getUlr()));
             startActivity(webIntent);
+        }
+
+        if(v == saveButton)
+        {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+            DatabaseReference restaurantRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RECIPES).child(uid);
+
+            DatabaseReference pushRef = restaurantRef.push();
+            String pushId = pushRef.getKey();
+            recipe.setPushId(pushId);
+            pushRef.setValue(recipe);
+
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
 }
