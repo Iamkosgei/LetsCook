@@ -114,19 +114,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     loadingIndicatorView.hide();
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    mDatabase.child("Users").child(user.getUid()).child("name").setValue(names.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
-
-                                            //avoids using the back btn to go back to the signup activity after successful login
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                            setDisplayName(task.getResult().getUser());
-                                            startActivity(intent);
-                                        }
-                                    });
+                                    Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+                                    //avoids using the back btn to go back to the signup activity after successful login
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    setDisplayName(task.getResult().getUser());
+                                    startActivity(intent);
                                 } else {
                                     loadingIndicatorView.hide();
                                     Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
