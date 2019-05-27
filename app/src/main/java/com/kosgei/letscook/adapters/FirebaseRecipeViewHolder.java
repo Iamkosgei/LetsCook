@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kosgei.letscook.Constants;
 import com.kosgei.letscook.R;
+import com.kosgei.letscook.models.Meal;
 import com.kosgei.letscook.models.Recipe;
 import com.kosgei.letscook.ui.RecipeDetailActivity;
 import com.squareup.picasso.Picasso;
@@ -42,7 +43,7 @@ public class FirebaseRecipeViewHolder  extends RecyclerView.ViewHolder implement
         user = FirebaseAuth.getInstance().getCurrentUser();
     }
 
-    public void bindRestaurant(Recipe recipe) {
+    public void bindRestaurant(Meal recipe) {
         TextView name = mView.findViewById(R.id.recipe_name);
         ImageView image = mView.findViewById(R.id.recipe_image);
 
@@ -52,14 +53,14 @@ public class FirebaseRecipeViewHolder  extends RecyclerView.ViewHolder implement
 
     @Override
     public void onClick(View view) {
-        final ArrayList<Recipe> recipes = new ArrayList<>();
+        final ArrayList<Meal> recipes = new ArrayList<>();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RECIPES).child(user.getUid());
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    recipes.add(snapshot.getValue(Recipe.class));
+                    recipes.add(snapshot.getValue(Meal.class));
                 }
 
                 int itemPosition = getLayoutPosition();
@@ -67,8 +68,6 @@ public class FirebaseRecipeViewHolder  extends RecyclerView.ViewHolder implement
                 Intent intent = new Intent(mContext, RecipeDetailActivity.class);
                 intent.putExtra("position", itemPosition + "");
                 intent.putExtra("recipes", Parcels.wrap(recipes));
-
-                Log.d("heyy", String.valueOf(recipes.get(0).getName()));
 
                 mContext.startActivity(intent);
             }
