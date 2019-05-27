@@ -2,6 +2,7 @@ package com.kosgei.letscook.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcel;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ import com.kosgei.letscook.R;
 import com.kosgei.letscook.models.Category;
 import com.kosgei.letscook.ui.RecipeListActivity;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -77,7 +80,8 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         public void onClick(View v) {
             int itemPosition = getLayoutPosition();
             Intent intent = new Intent(context, RecipeListActivity.class);
-            intent.putExtra("category",categories.get(itemPosition).getName());
+            intent.putExtra("category", Parcels.wrap(categories.get(itemPosition)));
+//            intent.putExtra("category",categories.get(itemPosition).getName());
             context.startActivity(intent);
         }
     }
