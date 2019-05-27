@@ -5,15 +5,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.kosgei.letscook.models.Meal;
 import com.kosgei.letscook.models.Recipe;
 import com.kosgei.letscook.ui.RecipeDetailFragment;
 
 import java.util.ArrayList;
 
 public class RecipePagerAdapter extends FragmentPagerAdapter {
-    private ArrayList<Recipe>recipes;
+    private ArrayList<Meal>recipes;
 
-    public RecipePagerAdapter(@NonNull FragmentManager fm,ArrayList<Recipe>recipes) {
+    public RecipePagerAdapter(@NonNull FragmentManager fm,ArrayList<Meal>recipes) {
         super(fm);
         this.recipes = recipes;
     }
