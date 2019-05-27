@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kosgei.letscook.R;
+import com.kosgei.letscook.models.Meal;
 import com.kosgei.letscook.models.Recipe;
 import com.kosgei.letscook.ui.RecipeDetailActivity;
 import com.squareup.picasso.Picasso;
@@ -25,9 +26,9 @@ import butterknife.ButterKnife;
 
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeViewHolder> {
     private Context context;
-    private ArrayList<Recipe> recipes;
+    private ArrayList<Meal> recipes;
 
-    public RecipeListAdapter(Context context,ArrayList<Recipe> recipes) {
+    public RecipeListAdapter(Context context,ArrayList<Meal> recipes) {
         this.context = context;
         this.recipes = recipes;
     }
@@ -35,7 +36,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_list_item_2,parent,false);
         return new RecipeViewHolder(view);
     }
 
@@ -66,10 +67,10 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             itemView.setOnClickListener(this);
         }
 
-       public void bindRecipe(Recipe recipe)
+       public void bindRecipe(Meal meal)
         {
-            recipeTV.setText(recipe.getName());
-            Picasso.get().load(recipe.getImage()).into(recipeImageView);
+            recipeTV.setText(meal.getName());
+            Picasso.get().load(meal.getImage()).into(recipeImageView);
         }
 
 
