@@ -223,12 +223,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         else if (id == R.id.nav_logout)
         {
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(this, "Bye", Toast.LENGTH_SHORT).show();
-            finish();
+            Intent intent = new Intent(HomeActivity.this, WelcomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         }
         else if(id == R.id.nav_favourite)
         {
             startActivity(new Intent(HomeActivity.this,SavedRecipeListActivity.class));
+        }
+        else if(id == R.id.nav_exit)
+        {
+            Toast.makeText(this, "Bye", Toast.LENGTH_SHORT).show();
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
