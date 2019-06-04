@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.kosgei.letscook.R;
 import com.kosgei.letscook.adapters.RecipePagerAdapter;
+import com.kosgei.letscook.models.Meal;
 import com.kosgei.letscook.models.Recipe;
 
 import org.parceler.Parcels;
@@ -20,7 +21,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     @BindView(R.id.viewPager)
     ViewPager viewPager;
     private RecipePagerAdapter recipePagerAdapter;
-    ArrayList<Recipe> recipes = new ArrayList<>();
+    ArrayList<Meal> recipes = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,5 +34,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
         recipePagerAdapter = new RecipePagerAdapter(getSupportFragmentManager(),recipes);
         viewPager.setAdapter(recipePagerAdapter);
         viewPager.setCurrentItem(startingPosition);
+
     }
 }
