@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.kosgei.letscook.Constants;
 import com.kosgei.letscook.R;
 import com.kosgei.letscook.models.Category;
 import com.kosgei.letscook.ui.RecipeListActivity;
@@ -81,6 +82,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
             int itemPosition = getLayoutPosition();
             Intent intent = new Intent(context, RecipeListActivity.class);
             intent.putExtra("category", Parcels.wrap(categories.get(itemPosition)));
+            Constants.CATEGORY =categories.get(itemPosition).getName();
 //            intent.putExtra("category",categories.get(itemPosition).getName());
             context.startActivity(intent);
         }
