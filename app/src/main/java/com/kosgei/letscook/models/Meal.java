@@ -10,6 +10,7 @@ public class Meal {
     private List<String> ingredients;
     private List<String> measure;
     private String mealUid;
+    String index;
 
     public Meal() {
     }
@@ -27,6 +28,8 @@ public class Meal {
         this.image = image;
         this.ingredients = ingredients;
         this.measure = measure;
+
+        this.index = "not_specified";
     }
 
 
@@ -132,5 +135,12 @@ public class Meal {
 
     public void setMealUid(String mealUid) {
         this.mealUid = mealUid;
+    }
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }
